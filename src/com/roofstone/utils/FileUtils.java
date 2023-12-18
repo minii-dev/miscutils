@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class FileUtils {
-	
+		
 	public static String readText(File file) {
 		return convert(read(file));
 	}

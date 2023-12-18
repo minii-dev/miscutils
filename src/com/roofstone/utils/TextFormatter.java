@@ -135,6 +135,18 @@ public class TextFormatter {
 			}
 			return;
 		}
+		
+		if(value instanceof Throwable) {
+			Throwable t=(Throwable)value;
+			while(t!=null) {
+				appendValue(t.toString(), sb, start, level); // append as String
+				t=t.getCause();
+				if(t!=null) {
+					sb.append("\ncaused by: ");
+				}
+			}
+			return;
+		}
 
 		if(level>MAX_PARAMETER_RECURSION_LEVEL || (sb.length()-start)>MAX_PARAMETER_LENGTH) {
 			sb.append('<').append(value.getClass().getName()).append('>');

@@ -216,7 +216,7 @@ public class SimpleHttpClient  {
 			responseCode = httpClient.getResponseCode();
 			result=data!=null && data.isSkipReading?null:readString();
 			if(isDebug()) {
-				log.debug(new Txt(351, "http rc: $0", responseCode));
+				log.debug(new Txt(351, "http-rc: ($0) $1", responseCode, result));
 				if(log.is(ILog.TRACE)) {
 					Map<String, List<String>> hf = httpClient.getHeaderFields();
 					if(hf!=null) {
@@ -229,7 +229,7 @@ public class SimpleHttpClient  {
 									for(int i=1;i<size;i++) {
 										val=val+", "+lst.get(i);
 									}
-									log.log(ILog.TRACE, new Txt(352, "http:hdr: $0 = $1", hfe.getKey(), ':', val));
+									log.log(ILog.TRACE, new Txt(352, "http-hdr: $0 = $1", hfe.getKey(), ':', val));
 								}
 							}
 						}

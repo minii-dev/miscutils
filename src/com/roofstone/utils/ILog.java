@@ -18,6 +18,8 @@ public interface ILog {
 		
 	boolean is(int level);
 	
+	void setLevel(int level);
+	
 	default boolean isDebug() {
 		return is(DEBUG);
 	}

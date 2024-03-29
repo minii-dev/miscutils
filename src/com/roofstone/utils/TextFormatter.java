@@ -1,5 +1,7 @@
 package com.roofstone.utils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.util.Date;
 import java.util.Iterator;
@@ -138,13 +140,11 @@ public class TextFormatter {
 		
 		if(value instanceof Throwable) {
 			Throwable t=(Throwable)value;
-			while(t!=null) {
-				appendValue(t.toString(), sb, start, level); // append as String
-				t=t.getCause();
-				if(t!=null) {
-					sb.append("\ncaused by: ");
-				}
-			}
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			t.printStackTrace(pw);
+			appendValue(sw.toString(), sb, start, level);
+			t=t.getCause();
 			return;
 		}
 

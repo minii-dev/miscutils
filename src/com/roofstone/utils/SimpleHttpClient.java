@@ -444,7 +444,7 @@ public class SimpleHttpClient  {
 	public HttpException getRcException() {
 		if(responseCode<200 || responseCode>299) {
 			if(responseCode==401) {
-				return new HttpException("Authentication error");
+				return new HttpException(TextFormatter.f("Authentication error ($0)", result));
 			}
 			return new HttpException(TextFormatter.f("HTTP error $0 data from $1: $2", responseCode, url, result));
 		}
